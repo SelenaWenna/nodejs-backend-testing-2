@@ -12,11 +12,23 @@ describe('PostsService', () => {
     postsService.create({ text: 'Some pre-existing post' });
   });
 
-  it('should add a new post', () => {
-    // реализуйте тест-кейс
+  it('should add a new post', async () => {
+    // arrange
+
+    // act
+    const { id, date } = await postsService.create(post);
+
+    //assert
+    expect(postsService.find(id)).toEqual({ ...post, id, date });
   });
 
-  it('should find a post', () => {
-    // реализуйте тест-кейс
+  it('should find a post', async () => {
+    // arrange
+
+    // act
+    const newPost = await postsService.create(post);
+
+    //assert
+    expect(postsService.find(newPost.id)).toEqual(newPost);
   });
 });
